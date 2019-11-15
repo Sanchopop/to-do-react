@@ -1,0 +1,29 @@
+.statusColumn {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 20vw;
+    height: 40vw;
+    border: 1px solid orange;
+    border-radius: .5vw;
+    padding: 1vw;
+}
+
+.caption {
+    padding: 1vw;
+    color: orange;
+    font-weight: bold;
+    font-size: 2vw;
+}
+
+.toDoCards {
+    margin: 1vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 30vw;
+    width: 16vw;
+    overflow: auto;
+}

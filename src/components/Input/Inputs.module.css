@@ -1,0 +1,28 @@
+.inputRow {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.input {
+    height: 2vw;
+    width: 15vw;
+    padding: .5vw;
+    border: 1px solid orange;
+    border-radius: .5vw;
+    color: black;
+    font-size: 1vw;
+    outline: none;
+}
+
+.addButton {
+    height: 3vw;
+    width: 3vw;
+    margin-left: .5vw;
+    background-color: orange;
+    border: 1px solid black;
+    color: #fff;
+    border-radius: .5vw;
+    font-size: 1.5vw;
+    outline: none;
+}
