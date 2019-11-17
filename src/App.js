@@ -4,7 +4,10 @@ import StatusColumn from "./components/StatusColumn/StatusColumn";
 
 function App(props) {
 
-    const column = props.data.map(column => <StatusColumn column={column} addTask={props.addTask}/>);
+    const column = props.data.map(column => <StatusColumn
+        column={column}
+        addTask={props.addTask}
+        updateNewTaskText={props.updateNewTaskText}/>);
 
     return (
         <div className={styles.app}>

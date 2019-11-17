@@ -2,8 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import {addTask} from "./data";
+import {addTask, updateNewTaskText} from "./data";
 
 export let renderTree = (Data) => {
-    ReactDOM.render(<App data={Data} addTask={addTask}/>, document.getElementById('root'));
+    ReactDOM.render(<App
+        data={Data}
+        addTask={addTask}
+        updateNewTaskText={updateNewTaskText}/>,
+        document.getElementById('root'));
 };
