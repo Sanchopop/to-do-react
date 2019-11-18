@@ -6,8 +6,7 @@ function App(props) {
 
     const column = props.data.map(column => <StatusColumn
         column={column}
-        addTask={props.addTask}
-        updateNewTaskText={props.updateNewTaskText}/>);
+        dispatch={props.dispatch}/>);
 
     return (
         <div className={styles.app}>

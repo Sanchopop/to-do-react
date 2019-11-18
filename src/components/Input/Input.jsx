@@ -1,17 +1,20 @@
 import React from 'react';
 import InputStyle from "./Inputs.module.css"
+import {addTaskActionCreator, onTaskChangeActionCreator} from "../../data";
 
 const Input = (props) => {
 
     const newTask = React.createRef();
 
     const addTask = () => {
-        props.addTask(props.column);
+        const column = props.column;
+        props.dispatch(addTaskActionCreator(column));
     };
 
     const onTaskChange = () => {
+        const column = props.column;
         const taskText = newTask.current.value;
-        props.updateNewTaskText(taskText, props.column);
+        props.dispatch(onTaskChangeActionCreator(taskText, column));
     };
 
     return (
