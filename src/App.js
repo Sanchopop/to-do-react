@@ -4,13 +4,14 @@ import StatusColumn from "./components/StatusColumn/StatusColumn";
 
 function App(props) {
 
-    const column = props.data.map(column => <StatusColumn
+    const {columns} = props.state;
+    const columnItems = columns.map(column => <StatusColumn
         column={column}
         dispatch={props.dispatch}/>);
 
     return (
         <div className={styles.app}>
-            {column}
+            {columnItems}
         </div>
     );
 }

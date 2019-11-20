@@ -1,6 +1,6 @@
 import React from 'react';
 import InputStyle from "./Inputs.module.css"
-import {addTaskActionCreator, onTaskChangeActionCreator} from "../../data";
+import {addTaskActionCreator, onTaskChangeActionCreator} from "../../redux/column-reducer";
 
 const Input = (props) => {
 
@@ -9,19 +9,20 @@ const Input = (props) => {
     const addTask = () => {
         const column = props.column;
         props.dispatch(addTaskActionCreator(column));
+        newTask.current.value = '';
     };
 
     const onTaskChange = () => {
         const column = props.column;
-        const taskText = newTask.current.value;
-        props.dispatch(onTaskChangeActionCreator(taskText, column));
+        const newTaskText = newTask.current.value;
+        props.dispatch(onTaskChangeActionCreator(newTaskText, column));
     };
 
     return (
         <div className={InputStyle.inputRow}>
             <input type="text"
                    ref={newTask}
-                   placeholder={props.column.inputValue}
+                   placeholder={props.column.placeholder}
                    className={InputStyle.input}
                    onChange={onTaskChange}/>
             <button className={InputStyle.addButton}
