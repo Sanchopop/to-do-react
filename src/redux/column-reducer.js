@@ -6,64 +6,71 @@ let initialState = {
         {
             caption: 'To Do',
             placeholder: 'WhatTo Do?',
-            newTaskText: ''
         },
         {
             caption: 'In Progress',
-            placeholder: 'What in Progress?',
-            newTaskText: ''
+            placeholder: 'What in Progress?'
         },
         {
             caption: 'Done',
-            placeholder: 'What is Done?',
-            newTaskText: ''
+            placeholder: 'What is Done?'
+
         }
     ],
     items: [
         {
             name: 'CRA',
             time: 'Sun Nov 17 2019 21:07:51 GMT+0200 (Восточная Европа, стандартное время)',
-            status: 'toDo'
+            status: 'To Do'
         },
         {
             name: 'Task 1',
             time: 'Sun Nov 17 2019 21:07:51 GMT+0200 (Восточная Европа, стандартное время)',
-            status: 'toDo'
+            status: 'To Do'
         },
         {
             name: 'Task 2',
             time: 'Sun Nov 17 2019 21:07:51 GMT+0200 (Восточная Европа, стандартное время)',
-            status: 'inProgress'
+            status: 'In Progress'
         },
         {
             name: 'Task 2',
             time: 'Sun Nov 17 2019 21:07:51 GMT+0200 (Восточная Европа, стандартное время)',
-            status: 'done'
+            status: 'Done'
         }
-    ]
+    ],
+    newTaskText: ''
 };
 
 const columnReducer = (state = initialState, action) => {
+
     switch(action.type) {
-        case ADD_TASK:
+        case ADD_TASK: {
             const newTask = {
-                name: action.newTaskText,
-                time: new Date()
+                name: state.newTaskText,
+                time: new Date(),
+                status: action.status
             };
-            action.column.items.unshift(newTask);
-            return state;
-        case UPDATE_NEW_TASK_TEXT:
-            state.newTaskText = action.newTaskText;
-            return state;
+            let stateCopy = {...state};
+            stateCopy.items = [...state.items];
+            stateCopy.items.unshift(newTask);
+            stateCopy.newTaskText = '';
+            return stateCopy;
+        }
+        case UPDATE_NEW_TASK_TEXT: {
+            let stateCopy = {...state};
+            stateCopy.newTaskText = action.newTaskText;
+            return stateCopy;
+        }
         default:
             return state;
     }
 };
 
-export const addTaskActionCreator = (column) =>
-    ({type: ADD_TASK, column: column});
+export const addTaskActionCreator = (status) =>
+    ({type: ADD_TASK, status: status});
 
-export const onTaskChangeActionCreator = (newTaskText, column) =>
-    ({type: UPDATE_NEW_TASK_TEXT, newTaskText: newTaskText, column: column});
+export const onTaskChangeActionCreator = (newTaskText) =>
+    ({type: UPDATE_NEW_TASK_TEXT, newTaskText: newTaskText});
 
 export default columnReducer;

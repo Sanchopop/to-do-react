@@ -3,7 +3,7 @@ import CardStyle from './Card.module.css'
 import Moment from 'react-moment';
 
 const Card = (props) => {
-
+    const {name, time} = props.item;
     const calendarStrings = {
         lastDay : '[Yesterday]',
         sameDay : '[Today]',
@@ -15,12 +15,15 @@ const Card = (props) => {
 
     return (
         <div className={CardStyle.card}>
-            <span>
-                {props.name}
+            <div className={CardStyle.cardText}>
+            <span className={CardStyle.name}>
+                {name}
             </span>
-            <Moment calendar={calendarStrings}>
-                {props.time}
-            </Moment>
+                <Moment calendar={calendarStrings} className={CardStyle.time}>
+                    {time}
+                </Moment>
+            </div>
+            <span>...</span>
         </div>
     );
 };

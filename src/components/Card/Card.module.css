@@ -1,9 +1,22 @@
 .card {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
     height: 5vw;
     margin-bottom: .5vw;
+}
+
+.cardText {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.name {
+    font-size: 1vw;
+}
+
+.time {
+    font-size: 1vw;
 }

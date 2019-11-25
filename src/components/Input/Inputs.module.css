@@ -2,6 +2,7 @@
     display: flex;
     justify-content: center;
     align-content: center;
+    position: relative;
 }
 
 .input {
@@ -25,4 +26,13 @@
     border-radius: .5vw;
     font-size: 1.5vw;
     outline: none;
+}
+
+.invalid {
+    display: none;
+    position: absolute;
+    font-size: 1vw;
+    color: red;
+    text-decoration: underline;
+    top: 3.5vw;
 }

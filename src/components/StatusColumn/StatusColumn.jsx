@@ -4,17 +4,17 @@ import Input from "../Input/Input";
 import statusColumnStyle from "./StatusColumn.module.css"
 
 const StatusColumn = (props) => {
-
-    const cards = props.column.items.map(card => <Card name={card.name}
-                                                       time={card.time}/>);
+    const {column, items, addTask, updateTask} = props;
+    const cards = items.map((item, index) => <Card key={index} item={item}/>);
     return (
         <div className={statusColumnStyle.statusColumn}>
             <div className={statusColumnStyle.caption}>
-                {props.column.caption}
+                {column.caption}
             </div>
             <Input
-                column={props.column}
-                dispatch={props.dispatch}/>
+                column={column}
+                addTask={addTask}
+                updateTask={updateTask}/>
             <div className={statusColumnStyle.toDoCards}>
                 {cards}
             </div>

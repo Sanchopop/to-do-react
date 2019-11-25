@@ -1,34 +1,40 @@
 import React from 'react';
 import InputStyle from "./Inputs.module.css"
-import {addTaskActionCreator, onTaskChangeActionCreator} from "../../redux/column-reducer";
 
 const Input = (props) => {
-
+    const {column, addTask, updateTask} = props;
     const newTask = React.createRef();
+    const error = React.createRef();
 
-    const addTask = () => {
-        const column = props.column;
-        props.dispatch(addTaskActionCreator(column));
-        newTask.current.value = '';
+    const addNewTask = () => {
+        const newTaskLength = newTask.current.value.length;
+        if (newTaskLength < 3 || newTaskLength > 40) {
+            error.current.style.display = 'flex';
+        } else {
+            addTask(column.caption);
+            newTask.current.value = '';
+        }
     };
 
-    const onTaskChange = () => {
-        const column = props.column;
-        const newTaskText = newTask.current.value;
-        props.dispatch(onTaskChangeActionCreator(newTaskText, column));
+    const onTaskChange = (e) => {
+        error.current.style.display = 'none';
+        if (e.key === 'Enter') addNewTask();
+        console.log(newTask.current.value);
+        updateTask(newTask.current.value);
     };
 
     return (
         <div className={InputStyle.inputRow}>
             <input type="text"
                    ref={newTask}
-                   placeholder={props.column.placeholder}
+                   placeholder={column.placeholder}
                    className={InputStyle.input}
-                   onChange={onTaskChange}/>
+                   onKeyPress={onTaskChange}/>
             <button className={InputStyle.addButton}
-                    onClick={addTask}>
+                    onClick={addNewTask}>
                 +
             </button>
+            <span ref={error} className={InputStyle.invalid}>Invalid Task Name!</span>
         </div>
     )
 };
