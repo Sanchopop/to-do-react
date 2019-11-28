@@ -23,7 +23,7 @@ const Card = (props) => {
                     {time}
                 </Moment>
             </div>
-            <span>...</span>
+            <i className="fas fa-pencil-alt"></i>
         </div>
     );
 };

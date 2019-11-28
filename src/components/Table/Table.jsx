@@ -1,6 +1,7 @@
 import StatusColumn from "../StatusColumn/StatusColumn";
 import TableStyles from "../Table/Table.module.css";
 import React from "react";
+// import EditModalWindow from "../EditModalWindow/EditModalWindow";
 
 const Table = (props) => {
     const {columns, items, addTask, updateTask} = props;
@@ -12,6 +13,9 @@ const Table = (props) => {
         <div className={TableStyles.table}>
             {statusColumn}
         </div>
+/*       <div className={TableStyles.table}>
+           <EditModalWindow/>
+       </div>*/
     );
 };
 
