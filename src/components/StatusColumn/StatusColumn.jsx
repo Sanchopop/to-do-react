@@ -4,8 +4,8 @@ import Input from "../Input/Input";
 import statusColumnStyle from "./StatusColumn.module.css"
 
 const StatusColumn = (props) => {
-    const {column, items, addTask, updateTask} = props;
-    const cards = items.map((item, index) => <Card key={index} item={item}/>);
+    const {column, items, addTask, updateTask, showModal} = props;
+    const cards = items.map((item, index) => <Card key={index} item={item} showModal={showModal}/>);
     return (
         <div className={statusColumnStyle.statusColumn}>
             <div className={statusColumnStyle.caption}>

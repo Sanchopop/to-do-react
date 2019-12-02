@@ -1,11 +1,11 @@
 import {connect} from "react-redux";
 import Table from "./Table.jsx";
 import React from "react";
-import {addTaskActionCreator, onTaskChangeActionCreator} from "../../redux/column-reducer";
+import {addTaskActionCreator, onTaskChangeActionCreator, hideModal, showModal} from "../../redux/redux-store";
 
 const TableContainer = (props) => {
-    const {columns, items, addTask, updateTask} = props;
-    return <Table columns={columns} items={items} addTask={addTask} updateTask={updateTask}/>
+    const {columns, items, addTask, updateTask, showModal, hideModal} = props;
+    return <Table columns={columns} items={items} addTask={addTask} updateTask={updateTask} showModal={showModal} hideModal={hideModal}/>
 };
 
 const mapStateToProps = (state) => {
@@ -22,7 +22,10 @@ const mapDispatchToProps = (dispatch) => {
         },
         updateTask: (newTaskText) => {
             dispatch(onTaskChangeActionCreator(newTaskText));
-        }
+        },
+        hideModal: () => dispatch(hideModal()),
+        showModal: () => dispatch(showModal())
+
     }
 };
 

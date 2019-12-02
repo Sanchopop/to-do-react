@@ -19,7 +19,6 @@ const Input = (props) => {
     const onTaskChange = (e) => {
         error.current.style.display = 'none';
         if (e.key === 'Enter') addNewTask();
-        console.log(newTask.current.value);
         updateTask(newTask.current.value);
     };
 
