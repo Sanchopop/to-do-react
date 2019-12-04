@@ -3,6 +3,7 @@ const ADD_TASK = 'ADD-TASK';
 const UPDATE_NEW_TASK_TEXT = 'UPDATE-NEW-TASK-TEXT';
 const SHOW_MODAL = 'SHOW-MODAL';
 const HIDE_MODAL = 'HIDE-MODAL';
+const CARD_EDIT = 'CARD-EDIT';
 
 let initialState = {
     columns: [
@@ -43,6 +44,8 @@ let initialState = {
         }
     ],
     newTaskText: '',
+    editItem: '',
+    editColumn: '',
     modalStatus: false
 };
 
@@ -68,11 +71,25 @@ const columnReducer = (state = initialState, action) => {
         case SHOW_MODAL: {
             let stateCopy = {...state};
             stateCopy.modalStatus = true;
+            stateCopy.editItem = action.item;
+            stateCopy.editColumn = action.column;
             return stateCopy;
         }
         case HIDE_MODAL: {
-            console.log('asdasd');
-            return state;
+            let stateCopy = {...state};
+            stateCopy.modalStatus = false;
+            return stateCopy;
+        }
+        case CARD_EDIT: {
+            let stateCopy = {...state};
+            stateCopy.items.forEach(item => {
+                if (item === stateCopy.editItem) {
+                    item.name = action.newValue;
+                    item.status = action.newStatus;
+                    item.time = new Date();
+                }
+            });
+            return stateCopy;
         }
         default:
             return state;
@@ -85,11 +102,14 @@ export const addTaskActionCreator = (status) =>
 export const onTaskChangeActionCreator = (newTaskText) =>
     ({type: UPDATE_NEW_TASK_TEXT, newTaskText: newTaskText});
 
-export const showModal = () =>
-    ({type: SHOW_MODAL});
+export const showModal = (item, column) =>
+    ({type: SHOW_MODAL, item: item, column: column});
 
 export const hideModal = () =>
     ({type: HIDE_MODAL});
+
+export const cardEdit = (newStatus, newValue) =>
+    ({type: CARD_EDIT, newStatus: newStatus, newValue: newValue});
 
 let store = createStore(columnReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 

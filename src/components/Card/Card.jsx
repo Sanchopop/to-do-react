@@ -3,7 +3,7 @@ import CardStyle from './Card.module.css'
 import Moment from 'react-moment';
 
 const Card = (props) => {
-    const {item, showModal} = props;
+    const {item, showModal, column} = props;
     const calendarStrings = {
         lastDay : '[Yesterday]',
         sameDay : '[Today]',
@@ -14,7 +14,7 @@ const Card = (props) => {
     };
 
     const openModal = () => {
-      showModal();
+      showModal(item, column);
     };
 
     return (

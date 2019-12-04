@@ -5,7 +5,7 @@ import statusColumnStyle from "./StatusColumn.module.css"
 
 const StatusColumn = (props) => {
     const {column, items, addTask, updateTask, showModal} = props;
-    const cards = items.map((item, index) => <Card key={index} item={item} showModal={showModal}/>);
+    const cards = items.map((item, index) => <Card key={index} item={item} showModal={showModal} column={column}/>);
     return (
         <div className={statusColumnStyle.statusColumn}>
             <div className={statusColumnStyle.caption}>
